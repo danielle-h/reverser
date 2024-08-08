@@ -1,0 +1,9 @@
+{
+"app_title":"Reverser",
+"title_text":"Reverse esreveR",
+"input_hint":"Enter your text here",
+"reverse_label":"Reverse",
+"copy_label":"Copy",
+"copied_message":"Copied to clipboard"
+
+}

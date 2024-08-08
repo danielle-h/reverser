@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,6 +19,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.greenAccent),
         useMaterial3: true,
       ),
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       home: const MyHomePage(),
     );
   }
@@ -33,18 +37,12 @@ class _MyHomePageState extends State<MyHomePage> {
   String toReverse = '';
   final TextEditingController _controller = TextEditingController();
 
-  void _reverse() {
-    setState(() {
-      toReverse = toReverse.split('').reversed.join();
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text("Reverse esreveR"),
+        title: Text(AppLocalizations.of(context)!.title_text),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -53,18 +51,23 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             TextField(
               controller: _controller,
-              maxLines: 10,
+              maxLines: 5,
               textAlign: TextAlign.center,
               decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Enter your text here',
+                border: const OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.greenAccent,
+                      width: 1.0,
+                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(16.0))),
+                hintText: AppLocalizations.of(context)!.input_hint,
               ),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             ElevatedButton.icon(
               icon: const Icon(Icons.swap_horiz),
               style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.symmetric(vertical: 16.0),
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
               ),
               onPressed: () {
                 setState(() {
@@ -75,9 +78,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       .join('\n');
                 });
               },
-              label: Text('Reverse'),
+              label: Text(AppLocalizations.of(context)!.reverse_label),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             Expanded(
               child: Card(
                 elevation: 2.0,
@@ -87,27 +90,29 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Text(
                       textAlign: TextAlign.center,
                       toReverse,
-                      style: TextStyle(fontSize: 16.0),
+                      style: const TextStyle(fontSize: 16.0),
                     ),
                   ),
                 ),
               ),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             ElevatedButton.icon(
               icon: const Icon(Icons.copy),
               style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.symmetric(vertical: 16.0),
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
               ),
               onPressed: () {
                 setState(() {
                   Clipboard.setData(ClipboardData(text: toReverse));
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Copied to clipboard')),
+                    SnackBar(
+                        content:
+                            Text(AppLocalizations.of(context)!.copied_message)),
                   );
                 });
               },
-              label: Text('Copy'),
+              label: Text(AppLocalizations.of(context)!.copy_label),
             ),
           ],
         ),

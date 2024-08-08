@@ -1,16 +1,7 @@
 # reverser
 
-A new Flutter project.
+Reverses multiline text, line by line. Option to copy results to clipboard.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+This is a "The name is on the tin" app. It does one thing, does it well, and doesn't try to distract you :)
