@@ -38,6 +38,12 @@ class _MyHomePageState extends State<MyHomePage> {
   final TextEditingController _controller = TextEditingController();
 
   @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -53,6 +59,15 @@ class _MyHomePageState extends State<MyHomePage> {
               controller: _controller,
               maxLines: 5,
               textAlign: TextAlign.center,
+              onChanged: (value) {
+                toReverse = _controller.text;
+                setState(() {
+                  toReverse = toReverse
+                      .split('\n')
+                      .map((line) => line.split('').reversed.join(''))
+                      .join('\n');
+                });
+              },
               decoration: InputDecoration(
                 border: const OutlineInputBorder(
                     borderSide: BorderSide(
@@ -63,23 +78,23 @@ class _MyHomePageState extends State<MyHomePage> {
                 hintText: AppLocalizations.of(context)!.input_hint,
               ),
             ),
-            const SizedBox(height: 16.0),
-            ElevatedButton.icon(
-              icon: const Icon(Icons.swap_horiz),
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-              ),
-              onPressed: () {
-                setState(() {
-                  toReverse = _controller.text;
-                  toReverse = toReverse
-                      .split('\n')
-                      .map((line) => line.split('').reversed.join(''))
-                      .join('\n');
-                });
-              },
-              label: Text(AppLocalizations.of(context)!.reverse_label),
-            ),
+            // const SizedBox(height: 16.0),
+            // ElevatedButton.icon(
+            //   icon: const Icon(Icons.swap_horiz),
+            //   style: ElevatedButton.styleFrom(
+            //     padding: const EdgeInsets.symmetric(vertical: 16.0),
+            //   ),
+            //   onPressed: () {
+            //     setState(() {
+            //       toReverse = _controller.text;
+            //       toReverse = toReverse
+            //           .split('\n')
+            //           .map((line) => line.split('').reversed.join(''))
+            //           .join('\n');
+            //     });
+            //   },
+            //   label: Text(AppLocalizations.of(context)!.reverse_label),
+            // ),
             const SizedBox(height: 16.0),
             Expanded(
               child: Card(
