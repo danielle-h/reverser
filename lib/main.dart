@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
@@ -33,9 +34,19 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage>
+    with SingleTickerProviderStateMixin {
   String toReverse = '';
   final TextEditingController _controller = TextEditingController();
+
+  //animation parameters
+  final Duration duration = Duration(milliseconds: 300);
+  Curve curve = Curves.easeInOut;
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   void dispose() {
@@ -77,24 +88,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     borderRadius: BorderRadius.all(Radius.circular(16.0))),
                 hintText: AppLocalizations.of(context)!.input_hint,
               ),
-            ),
-            // const SizedBox(height: 16.0),
-            // ElevatedButton.icon(
-            //   icon: const Icon(Icons.swap_horiz),
-            //   style: ElevatedButton.styleFrom(
-            //     padding: const EdgeInsets.symmetric(vertical: 16.0),
-            //   ),
-            //   onPressed: () {
-            //     setState(() {
-            //       toReverse = _controller.text;
-            //       toReverse = toReverse
-            //           .split('\n')
-            //           .map((line) => line.split('').reversed.join(''))
-            //           .join('\n');
-            //     });
-            //   },
-            //   label: Text(AppLocalizations.of(context)!.reverse_label),
-            // ),
+            ).animate().scale(
+                duration: duration,
+                curve: curve,
+                begin: Offset(0.8, 0.8),
+                end: Offset(1, 1)),
             const SizedBox(height: 16.0),
             Expanded(
               child: Card(
@@ -110,7 +108,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               ),
-            ),
+            ).animate().scale(
+                duration: duration,
+                delay: const Duration(milliseconds: 100),
+                curve: curve,
+                begin: Offset(0.8, 0.8),
+                end: Offset(1, 1)),
             const SizedBox(height: 16.0),
             ElevatedButton.icon(
               icon: const Icon(Icons.copy),
@@ -128,7 +131,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 });
               },
               label: Text(AppLocalizations.of(context)!.copy_label),
-            ),
+            ).animate().scale(
+                duration: duration,
+                delay: const Duration(milliseconds: 200),
+                curve: curve,
+                begin: Offset(0.5, 0.5),
+                end: Offset(1, 1)),
           ],
         ),
       ),
