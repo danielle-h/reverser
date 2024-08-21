@@ -13,7 +13,7 @@ Try it out for [free](https://play.google.com/store/apps/details?id=com.honeysto
 
 This is a "The name is on the tin" app. It does one thing, does it well, and doesn't try to distract you :)
 
-![alt text](<reverser screenshot english text.jpg>)
-![alt text](<screenshot reverse 1.jpg>)
+<img src="https://github.com/danielle-h/reverser/blob/main/reverser%20screenshot%20english%20text.jpg" width="200"> <img src="https://github.com/danielle-h/reverser/blob/main/screenshot%20reverse%201.jpg" width="200">
 
-<video controls src="reverser-demo.mp4" title="Title"></video>
+https://github.com/user-attachments/assets/f857eb6a-db85-49f3-ad0f-4e54f9199d86
+
